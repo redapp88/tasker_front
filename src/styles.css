@@ -1,0 +1,29 @@
+.smallText{
+    font-size: x-small;
+}
+.verySmallText{
+    font-size: xx-small;
+}
+.clickAble{
+    cursor: pointer;
+}
+.bigText{
+    font-size: larger;
+    font-weight: bold;
+}
+.textBold{
+    font-weight: bolder;
+}
+.topMargin{
+    margin-top: 20px;
+}
+.smallImageSize{
+    height: 100px;
+    width: 100px;
+}
+.bigImageSize{
+    margin-top: 20%;
+    height: 70%;
+    width: 90%;
+    margin-left: 5%;
+}

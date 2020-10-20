@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title align="center" >
+      <ion-label class="font-weight-bold">Ajout d'un nouveau Task</ion-label>
+    </ion-title>
+    <ion-buttons slot="end" >
+      <ion-button slot="end"  (click)="onCancel()">
+        <ion-icon slot="icon-only" size="large"  color='danger' name="close-circle-outline"></ion-icon></ion-button>
+
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <form [formGroup]="form">
+    <ion-row class="topMargin">
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label class="smallText" align="left" position="floating">
+            Titre
+          </ion-label>
+          <ion-input  maxlength="20" type="text" formControlName="title"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label class="smallText" align="left" position="floating">
+            Client
+          </ion-label>
+          <ion-input type="text" formControlName="client"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="topMargin">
+      <ion-col>
+        <ion-item>
+          <ion-label class="smallText" align="left" position="floating">
+            Description
+          </ion-label>
+          <ion-textarea rows="4" formControlName="description"></ion-textarea>
+
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+    <ion-row class="topMargin">
+      <ion-col offset="2" size="8">
+        <ion-button fill="solid" expand="block" (click)="onAddTask()" [disabled]="!form.valid">
+          <ion-label style="padding-right: 5px">Ajouter</ion-label> <ion-icon name="add-outline"></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-grid>
+
+</ion-content>

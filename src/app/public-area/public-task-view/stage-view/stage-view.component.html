@@ -1,0 +1,43 @@
+<ion-header class="ion-text-center">
+  <ion-toolbar>
+    <ion-title >
+      <ion-label class="font-weight-bolder"></ion-label>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+          <ion-icon slot="icon-only" size=large color="danger" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-text-center" padding>
+
+  <ion-grid>
+      <ion-row class="topMargin">
+          <ion-col>
+              <div align="center">
+                  <ion-label color="primary" class="bigText">Task:{{stage.task.title}}</ion-label>
+              </div>
+          </ion-col>
+      </ion-row>
+    <ion-row class="topMargin">
+    <ion-col>
+        <div align="center">
+            <ion-label class="textBold">Etape:{{stage.comment}}</ion-label>
+        </div>
+      </ion-col>
+</ion-row>
+      <ion-row class="topMargin">
+        <ion-col>
+            <div align="center" >
+                <ion-label class="textBold">{{stage.stageDate  | date:'dd/MM/yyyy à HH:mm'}}</ion-label>
+            </div>
+        </ion-col>
+    </ion-row>
+    <ion-row class="topMargin">
+      <ion-col size="4"  *ngFor="let photo of stage.photos">
+       <ion-img [src]=" getfile(photo.url)" (click)="onImageView(photo.url)"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

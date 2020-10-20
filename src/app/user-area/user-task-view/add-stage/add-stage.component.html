@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title align="center" >
+      <ion-label class="textBold">Ajout d'une nouvelle Etape</ion-label>
+    </ion-title>
+    <ion-buttons slot="end" >
+      <ion-button slot="end"  (click)="onCancel()">
+        <ion-icon slot="icon-only" size="large"  color='danger' name="close-circle-outline"></ion-icon></ion-button>
+
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form [formGroup]="form">
+    <ion-row class="topMargin">
+      <ion-col offset="8" size="4">
+        <ion-button fill="solid" expand="block" (click)="onAddStage()" [disabled]="!form.valid">
+          <ion-icon size="large" name="add-outline"></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+
+
+      <ion-row class="topMargin">
+        <ion-col>
+          <ion-item>
+            <ion-label class="smallText" align="left" position="floating">
+              Commentaire
+            </ion-label>
+            <ion-textarea maxlength="400" rows="4" formControlName="comment"></ion-textarea>
+
+          </ion-item>
+
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item-divider>
+            <ion-label color="primary">
+              Photos
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngFor="let photo of loadedPhotos"size="4">
+          <ion-img class="smallImageSize"  [src]=" getfile(photo.url)" (click)="onImageView(photo)"></ion-img>
+        </ion-col>
+        <ion-col size="4" *ngIf="loadedPhotos?.length<9">
+          <div class="smallImageSize" class="bordered" align="center">
+          <ion-button fill="transparent" (click)="onTakePhoto()"><ion-icon color="primary" slot="icon-only" size="large" name="add-outline"></ion-icon></ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </form>
+
+  </ion-grid>
+
+</ion-content>

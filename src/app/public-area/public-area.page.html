@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button menu="m1" slot="start"></ion-menu-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+          <ion-button class="textBold" color='tertiary' (click)="onGoToUserArea()">
+              <ion-label>Professionnel</ion-label>
+              <ion-icon name="arrow-forward-circle-outline"></ion-icon></ion-button>
+      </ion-buttons>
+
+      </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="vertical-align-content">
+
+    <form [formGroup]="form">
+    <ion-grid align="center">
+        <ion-row style="padding-top: 15%">
+            <ion-col offset="4" size="4">
+                <ion-img src="/assets/img/logo2.png"></ion-img>
+            </ion-col>
+        </ion-row>
+        <ion-row class="topMargin">
+            <ion-col offset="1" size="10">
+                <ion-item>
+                <ion-label class="smallText" align="left" position="floating">
+                   Code du Task
+                </ion-label>
+                    <ion-input type="text" formControlName="taskId"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row class="topMargin">
+            <ion-col offset="2" size="8">
+               <ion-button fill="solid" expand="block" (click)="onSearchTask()" [disabled]="!form.valid"> <ion-label style="padding-right: 5px">Chercher</ion-label> <ion-icon name="search-outline"></ion-icon></ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row style="padding-top: 5%">
+            <ion-col>
+                <ion-item-divider>
+                    <ion-label color="primary">
+                      Historique de recherche
+                    </ion-label>
+                </ion-item-divider>
+            </ion-col>
+        </ion-row>
+        <ion-row >
+            <ion-col>
+                <ion-list>
+                    <ion-item *ngFor="let task of loadedSearchTasks" detail (click)="onGetFromSearch(task)" >
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="3"><ion-badge color="secondary">{{task.id}}</ion-badge></ion-col>
+                                <ion-col size="9" align="center"> <ion-text> {{task.title}}</ion-text></ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</form>
+</ion-content>

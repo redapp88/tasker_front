@@ -1,0 +1,180 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button menu="m1" slot="start"></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button slot="end" color='success' (click)="onGoToPublicArea()">
+                <ion-label>Visiteur</ion-label>
+                <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+
+    <div class="backImages" *ngIf="inscrit">
+        <ion-grid class="topMargin">
+            <ion-row align="center" class="topMargin">
+                <ion-col size="4" offset="4" align="center">
+                    <ion-img src="/assets/img/success.png"></ion-img>
+                    <ion-label color="primary" class="bigText">Felicication</ion-label>
+                </ion-col>
+            </ion-row>
+            <ion-row align="center" class="topMargin">
+                <ion-col>
+                    Inscription reussie vous pouvez maintenant utiliser votre compte!
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="topMargin" align="center">
+                <ion-col>
+                    <ion-item class="textBold">
+                        <ion-button fill="clear" (click)="onRetour()">Login
+                            <ion-icon name="arrow"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div class="backImages" *ngIf="!inscrit">
+
+        <ion-segment (ionChange)="segmentChanged($event)" value="login">
+            <ion-segment-button value="login">
+                <ion-label>Login</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="subscribe">
+                <ion-label>Inscription</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+
+        <form [formGroup]="form">
+            <ion-grid class="backImages">
+
+                <ion-row class="topMargin">
+                    <ion-col size-sm="8" offset-sm="2" size-md="6" offset-md="3" size-lg="4" offset-lg="4">
+                        <ion-list>
+                            <ion-item>
+                                <ion-label class="font-weight-bold" position="floating">
+                                    Email<span *ngIf="!isLoging"><ion-text color="danger" class="textBold">*</ion-text></span>
+                                </ion-label>
+                                <ion-input
+                                        type="email"
+                                        formControlName="username"
+                                        class="font-weight-bold">
+                                </ion-input>
+                                <div *ngIf="(form.controls['username'].errors && form.controls['username'].touched)">
+                                    <ion-text class="smallText" color="danger"> Email requis</ion-text>
+                                </div>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label class="font-weight-bold" position="floating">
+                                    mot de passe
+                                    <span *ngIf="!isLoging"><ion-text color="danger"
+                                                                      class="textBold">*</ion-text></span>
+                                </ion-label>
+                                <ion-input
+                                        class="font-weight-bold"
+                                        type="password"
+                                        formControlName="password">
+                                </ion-input>
+
+                                <div *ngIf="(form.controls['password'].errors && form.controls['password'].touched)">
+                                    <ion-text class="smallText" color="danger">6 caractères minimum</ion-text>
+                                </div>
+                            </ion-item>
+                            <!-- <ion-item lines="none" align="center">
+                                 <ion-text class="smallText" color="primary">mot de passe oubié?</ion-text>
+                             </ion-item>-->
+                        </ion-list>
+
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="!isLoging">
+                    <ion-col size-sm="8" offset-sm="2" size-md="6" offset-md="3" size-lg="4" offset-lg="4">
+                        <ion-list>
+                            <ion-item>
+                                <ion-label class="font-weight-bold" position="floating">
+                                    saisir à nouveau le mot de passe
+                                    <span *ngIf="!isLoging"><ion-text color="danger"
+                                                                      class="textBold">*</ion-text></span>
+                                </ion-label>
+                                <ion-input
+                                        type="password"
+                                        class="font-weight-bold"
+                                        formControlName="repassword">
+                                </ion-input>
+
+                                <div *ngIf="form.errors?.mismatch && (form.controls['repassword'].dirty && form.controls['repassword'].touched)">
+                                    <ion-text class="smallText" color="danger">ne correspond pas a votre mot de passe
+                                    </ion-text>
+                                </div>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label class="font-weight-bold" position="floating">Nom/RC
+                                    <span *ngIf="!isLoging"><ion-text color="danger"
+                                                                      class="textBold">*</ion-text></span></ion-label>
+                                <ion-input
+                                        formControlName="name">
+                                </ion-input>
+
+                                <div *ngIf="(form.controls['name'].errors && form.controls['name'].touched)">
+                                    <ion-text class="smallText" color="danger">entrer votre nom ou RC (4 caractères
+                                        minimum)
+                                    </ion-text>
+                                </div>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label class="font-weight-bold" position="floating">
+                                    Telephone
+                                </ion-label>
+                                <ion-input
+                                        formControlName="phone">
+                                </ion-input>
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-label class="font-weight-bold" position="floating">
+                                    Adresse
+                                </ion-label>
+                                <ion-textarea
+                                        formControlName="adress">
+                                </ion-textarea>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+
+                    <ion-col size-sm="8" offset-sm="2" size-md="6" offset-md="3" size-lg="4" offset-lg="4">
+                        <ion-button *ngIf="isLoging" (click)="onAction()"
+                                    [disabled]="!loginValid()"
+                                    class="font-weight-bold"
+                                    color="primary"
+                                    expand="block">
+                            Login
+                        </ion-button>
+                        <div *ngIf="isLoging" align="center" class="topMargin">
+                            <ion-label (click)="onGoForgetPassword()">
+                                <ion-text color="secondary">Mot de passe oublié</ion-text>
+                            </ion-label>
+                        </div>
+                        <ion-button *ngIf="!isLoging" (click)="onAction()"
+                                    [disabled]="!form.valid"
+                                    class="font-weight-bold"
+                                    color="primary"
+                                    expand="block">
+                            S'inscrire
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+</ion-content>

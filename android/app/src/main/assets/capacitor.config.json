@@ -1,0 +1,13 @@
+{
+  "appId": "net.letapp.tasker",
+  "appName": "tasker",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

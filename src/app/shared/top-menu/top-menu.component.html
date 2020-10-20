@@ -1,0 +1,44 @@
+<ion-menu slot="start" menuId="m1" content-id="content" >
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <ion-item lines="none">
+        <ion-thumbnail><ion-img src="/assets/img/logo2.png"></ion-img></ion-thumbnail>
+        <ion-text color="primary" class="textBold">{{userName}}</ion-text>
+        </ion-item>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item lines="none" routerLink="/userArea">
+          <ion-icon name="business" slot="start" ></ion-icon>
+          <ion-label>Mes Task</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item lines="none" routerLink="/userArea/editProfile">
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-label>Mon Profile</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle>
+        <ion-item lines="none" routerLink="/bookings">
+          <ion-icon name="eye-off-outline" slot="start"></ion-icon>
+          <ion-label>Changer mon mot de passe</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle>
+        <ion-item lines="none" (click)="onLogout()" button>
+          <ion-icon name="exit" slot="start" ></ion-icon>
+          <ion-label>Deconnexion</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+
+
+  </ion-content>
+</ion-menu>

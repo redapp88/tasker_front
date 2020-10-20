@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">tasker</string>
+    <string name="title_activity_main">tasker</string>
+    <string name="package_name">net.letapp.tasker</string>
+    <string name="custom_url_scheme">net.letapp.tasker</string>
+</resources>

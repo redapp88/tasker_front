@@ -1,0 +1,75 @@
+<ion-header>
+<ion-buttons>
+  <ion-back-button  slot="start" ><ion-icon name="arrow-back-outline"></ion-icon></ion-back-button>
+</ion-buttons>
+
+  <ion-buttons slot="center">
+<ion-label>ID:{{loadedtask.id}} </ion-label>
+  </ion-buttons>
+
+  <ion-buttons slot="right">
+    <ion-label
+            [ngClass]="{'yellowColor': loadedtask.state === 'greenColor', 'greenColor':loadedtask.state === 'active' }">
+      Status:{{loadedtask.state}} </ion-label>
+  </ion-buttons>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row class="topMargin">
+
+      <ion-col >
+        <div align="center">
+        <ion-icon color="danger" size="large" name="settings-outline"></ion-icon>
+        </div>
+        <div align="center">
+          <ion-label class="textBold">{{loadedtask.worker.name}}</ion-label>
+        </div>
+        <div align="center">
+          <ion-label> <span class="textBold">Telephone:</span>{{loadedtask.worker.phone}} </ion-label>
+        </div>
+        <div align="center">
+        <ion-label ><span class="textBold">Adresse:</span>{{loadedtask.worker.adress}}</ion-label>
+        </div>
+        <div align="center">
+        <ion-label> <span class="textBold">Email:</span>{{loadedtask.worker.username}}</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div align="center">
+        <ion-icon color="primary" size="large" name="person-outline"></ion-icon>
+        </div>
+        <div align="center">
+          <ion-label ><span class="textBold">Au profit de:</span></ion-label>
+        </div>
+        <div align="center">
+        <ion-label >{{loadedtask.client}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="topMargin">
+      <ion-col align="center">
+        <ion-label color="primary" class="textBold" >{{loadedtask.description}} </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="topMargin">
+      <ion-col>
+        <ion-list>
+          <ion-item class="topMargin" lines="none" *ngFor="let stage of loadedStages" (click)=" onDetailsStage(stage)">
+          <ion-icon style="padding-right: 3px" color="success" name="checkbox-outline"></ion-icon>
+            <ion-label class="textBold">{{stage.comment}}</ion-label>
+            <div id="cercle" align="center">
+              <ion-label style="margin-top: 20px" class="verySmallText, textBold">{{stage.stageDate  | date:'dd/MMM'}}
+              </ion-label></div>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

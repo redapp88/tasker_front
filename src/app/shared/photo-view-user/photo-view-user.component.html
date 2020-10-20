@@ -1,0 +1,29 @@
+
+<ion-header class="ion-text-center">
+  <ion-toolbar>
+    <ion-title >
+      <ion-label class="font-weight-bolder"></ion-label>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon slot="icon-only" size=large  name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-text-center" padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="2">
+        <ion-button fill="clear"   (click)="onDeletetPhoto(photo)"><ion-icon size="large" color="danger" name="trash-outline"></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+<ion-col>
+  <div>
+    <ion-img  [src]="getfile(photo.url)"></ion-img>
+  </div>
+</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

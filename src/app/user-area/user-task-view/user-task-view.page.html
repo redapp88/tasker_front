@@ -1,0 +1,84 @@
+<ion-header>
+    <ion-toolbar>
+    <ion-buttons  >
+        <ion-back-button slot="start">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+        <ion-button  fill="clear" (click)="onSocialShare(loadedtask)">
+            <ion-icon color="warning" slot="icon-only" name="share"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button size="small" (click)="onAddStage()">
+            <ion-icon size="small" name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <div align="center">
+                    <ion-icon color="primary" size="large" name="person-outline"></ion-icon>
+                </div>
+                <div align="center">
+                    <ion-label><span class="textBold">Au profit de:</span>{{loadedtask.client}}</ion-label>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="topMargin">
+            <ion-col align="center">
+                <div>
+                    <ion-label>
+                        <ion-badge color="secondary">{{loadedtask.id}}</ion-badge>
+                    </ion-label>
+                </div>
+                <div>
+                    <ion-label color="dark" class="textBold">{{loadedtask.title}}</ion-label>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col align="center">
+                <ion-label color="primary">{{loadedtask.description}}</ion-label>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="topMargin">
+            <ion-col>
+                <ion-list>
+                    <ion-item-sliding #slidingItem *ngFor="let stage of loadedStages">
+                        <ion-item-options side="end">
+                            <ion-item-option>
+                                <ion-button fill="clear" (click)="onDeleteStage(stage.id,slidingItem)">
+                                    <ion-icon color="danger" slot="icon-only" name="trash-outline"></ion-icon>
+                                </ion-button>
+                            </ion-item-option>
+                            <ion-item-option>
+                                <ion-button fill="clear" (click)="onEditStage(stage,slidingItem)">
+                                    <ion-icon color="success" slot="icon-only" name="create-outline"></ion-icon>
+                                </ion-button>
+                            </ion-item-option>
+                        </ion-item-options>
+                        <ion-item detail class="topMargin" lines="none" (click)=" onDetailsStage(stage)">
+                            <ion-icon style="padding-right: 3px" color="success" name="checkbox-outline"></ion-icon>
+                            <ion-label class="textBold">{{stage.comment}}</ion-label>
+                            <div id="cercle" align="center">
+                                <ion-label style="margin-top: 20px" class="verySmallText, textBold">{{stage.stageDate |
+                                    date:'dd/MMM'}}
+                                </ion-label>
+                            </div>
+                        </ion-item>
+                    </ion-item-sliding>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

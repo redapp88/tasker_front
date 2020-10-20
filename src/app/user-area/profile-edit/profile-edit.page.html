@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="m1" slot="start"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button  class="textBold"  color='success' (click)="onGoToPublicArea()">
+        <ion-label>Visiteur</ion-label>
+        <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+
+  <form [formGroup]="form">
+    <ion-grid class="">
+      <ion-row class="topMargin">
+
+        <ion-col size="2" offset="5">
+          <ion-icon size="large" name="person-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row class="topMargin">
+        <ion-col size-sm="8" offset-sm="2" size-md="6" offset-md="3" size-lg="4" offset-lg="4">
+          <ion-list>
+            <ion-item lines="none">
+              <ion-label class="font-weight-bold" position="floating">
+                Email
+              </ion-label>
+              <ion-input class="textBold" disabled [value]=loadedUser?.username>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="font-weight-bold" position="floating">Nom/RC
+                <span><ion-text color="danger" class="textBold">*</ion-text></span></ion-label>
+              <ion-input
+                      formControlName="name"
+              [value]="loadedUser?.name">
+              </ion-input>
+
+              <div  *ngIf="(form.controls['name']?.errors && form.controls['name']?.touched)">
+                <ion-text class="smallText" color="danger" >entrer  votre nom ou  RC (4 caractères minimum) </ion-text>
+              </div>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="font-weight-bold" position="floating">
+                Telephone
+              </ion-label>
+              <ion-input
+                      formControlName="phone"
+                      [value]="loadedUser?.phone">
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="font-weight-bold" position="floating">
+                Adresse
+              </ion-label>
+              <ion-textarea
+                      formControlName="adress"
+                      [value]="loadedUser?.adress">
+              </ion-textarea>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col size-sm="8" offset-sm="2" size-md="6" offset-md="3" size-lg="4" offset-lg="4">
+
+      <ion-button (click)="onEdit()"
+                  [disabled]="!form.valid"
+                  class="font-weight-bold"
+                  color="primary"
+                  expand="block">
+       Modifier <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

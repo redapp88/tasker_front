@@ -1,0 +1,17 @@
+<ion-header class="ion-text-center">
+  <ion-toolbar>
+    <ion-title >
+      <ion-label class="font-weight-bolder"></ion-label>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancel()">
+        <ion-icon slot="icon-only" size=large color="danger" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-text-center" padding>
+  <div>
+  <ion-img [src]="getfile(photoUrl)"></ion-img>
+  </div>
+</ion-content>
